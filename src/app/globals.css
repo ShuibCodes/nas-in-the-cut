@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-page: #0f0c08;
+  --color-cream: #f4efe4;
+  --color-gold: #c9a24b;
+  --color-gold-light: #e7c878;
+  --color-surface: #17130d;
+  --color-surface-2: #1e1810;
+  --color-line: #2c2519;
+  --color-line-strong: #413523;
+  --color-muted: #b7ac99;
+  --color-dim: #8a7f6c;
+  --color-mint: #8fd9bb;
+  --color-success: #17573f;
+  --color-success-line: #2e7355;
+  --color-success-text: #c7dcd1;
+  --color-error: #e88a6a;
+  --color-pulse: #46b387;
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-display: var(--font-archivo), Arial, sans-serif;
+  --font-mono: var(--font-ibm), ui-monospace, monospace;
+  --animate-pulse-dot: pulseDot 2.4s infinite;
+}
+
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(70, 179, 135, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #0f0c08;
+    color: #f4efe4;
+    font-family: var(--font-hanken), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: #c9a24b;
+    color: #17130d;
+  }
+
+  a {
+    color: #e7c878;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #f4efe4;
+  }
+
+  input::placeholder {
+    color: #8a7f6c;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
