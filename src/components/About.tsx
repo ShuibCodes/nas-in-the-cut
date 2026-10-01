@@ -5,35 +5,17 @@ export function About() {
   return (
     <section data-screen-label="About" className="border-b border-line bg-surface">
       <Container className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] items-center gap-[clamp(32px,5vw,64px)] px-[clamp(20px,5vw,52px)] py-[clamp(48px,6vw,84px)]">
-        <div className="relative pb-[clamp(46px,7vw,70px)]">
-          <figure className="relative m-0 aspect-[4/5] w-[88%] overflow-hidden rounded-[10px] border border-line-strong bg-surface-2 shadow-[0_40px_80px_-50px_#000]">
-            <Image
-              src="/nas-terrace.jpg"
-              alt="Nas on a terrace overlooking the water in Dubai"
-              fill
-              unoptimized
-              sizes="(max-width: 768px) 88vw, 420px"
-              className="block object-cover [object-position:57%_58%]"
-              style={{ transform: "scale(1.55)", transformOrigin: "57% 56%" }}
-            />
-          </figure>
-          <figure className="absolute right-0 bottom-[clamp(2px,1vw,10px)] m-0 w-[47%] max-w-[224px] rounded-[10px] border border-line-strong bg-page px-2 pt-2 pb-0 shadow-[0_30px_60px_-34px_#000]">
-            <div className="relative aspect-square overflow-hidden rounded-[6px] bg-surface-2">
-              <Image
-                src="/nas-mo-farah.jpg"
-                alt="Nas with Mo Farah in the UAE"
-                fill
-                unoptimized
-                sizes="224px"
-                className="block object-cover [object-position:50%_42%]"
-                style={{ transform: "scale(1.3)", transformOrigin: "50% 40%" }}
-              />
-            </div>
-            <figcaption className="block px-0.5 pt-2 pb-[9px] font-mono text-[11px] tracking-[0.12em] text-dim uppercase">
-              With Mo Farah · UAE
-            </figcaption>
-          </figure>
-        </div>
+        <figure className="relative m-0 aspect-[4/5] w-[88%] overflow-hidden rounded-[10px] border border-line-strong bg-surface-2 shadow-[0_40px_80px_-50px_#000]">
+          <Image
+            src="/nas-terrace.jpg"
+            alt="Nas on a terrace overlooking the water in Dubai"
+            fill
+            unoptimized
+            sizes="(max-width: 768px) 88vw, 420px"
+            className="block object-cover [object-position:57%_58%]"
+            style={{ transform: "scale(1.55)", transformOrigin: "57% 56%" }}
+          />
+        </figure>
         <div>
           <span className="font-mono text-[12px] font-medium tracking-[0.2em] text-gold uppercase">
             Who&apos;s writing

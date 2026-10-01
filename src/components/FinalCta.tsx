@@ -16,11 +16,9 @@ export function FinalCta() {
           <br />
           <span className="text-gold-light">Then decide.</span>
         </h2>
-        <p className="mx-auto mt-0 mb-[30px] max-w-[44ch] text-[1.06rem] text-muted">
-          If it&apos;s not worth three minutes, unsubscribe. I won&apos;t be
-          offended.
-        </p>
-        <SubscribeForm variant="final" />
+        <div className="mt-[30px]">
+          <SubscribeForm variant="final" />
+        </div>
       </Container>
     </section>
   );
