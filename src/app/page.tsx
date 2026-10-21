@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import NewsletterPage from "./newsletter/page";
 
 export default function Home() {
-  redirect("/newsletter");
+  return <NewsletterPage />;
 }

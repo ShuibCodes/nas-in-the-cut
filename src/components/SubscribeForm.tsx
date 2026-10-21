@@ -84,7 +84,7 @@ export function SubscribeForm({ variant }: SubscribeFormProps) {
       noValidate
       onSubmit={onSubmit}
       className={`max-w-[490px] scroll-mt-[104px] ${
-        isHero ? "mt-[30px]" : "mx-auto"
+        isHero ? "mt-4 lg:mt-[30px]" : "mx-auto"
       }`}
     >
       <div className="flex flex-wrap gap-[10px]">
