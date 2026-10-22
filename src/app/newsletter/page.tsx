@@ -1,4 +1,5 @@
 import { About } from "@/components/About";
+import { CoffeeWithNas } from "@/components/CoffeeWithNas";
 import { CollectiveBand } from "@/components/CollectiveBand";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
@@ -21,6 +22,7 @@ export default function NewsletterPage() {
         <TravelMap />
         <CollectiveBand />
         <WhyIWrite />
+        <CoffeeWithNas />
         <FinalCta />
       </main>
       <Footer />
