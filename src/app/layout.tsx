@@ -25,7 +25,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nas In The Cut — the daily email on how the money actually gets made",
+  title: "Nas In The Cut: the daily email on how the money actually gets made",
   description:
     "A free daily email from Nas: real deals in gyms, real estate and creative businesses. The wins, the fails, the lessons nobody posts. One short email a day.",
   icons: {

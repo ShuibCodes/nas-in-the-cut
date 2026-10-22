@@ -4,7 +4,7 @@ import { FormEvent, useRef, useState } from "react";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
 const ERROR_COPY =
-  "That email doesn’t look right — check it and try again.";
+  "That email doesn’t look right. Check it and try again.";
 
 type SubscribeFormProps = {
   variant: "hero" | "final";
@@ -51,7 +51,7 @@ export function SubscribeForm({ variant }: SubscribeFormProps) {
 
       setDone(true);
     } catch {
-      setError("Couldn’t add you just now — try again.");
+      setError("Couldn’t add you just now. Try again.");
     } finally {
       setBusy(false);
     }

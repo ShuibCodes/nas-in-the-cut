@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
-const INVALID_EMAIL = "That email doesn’t look right — check it and try again.";
-const GENERIC_ERROR = "Couldn’t add you just now — try again.";
+const INVALID_EMAIL = "That email doesn’t look right. Check it and try again.";
+const GENERIC_ERROR = "Couldn’t add you just now. Try again.";
 
 export async function POST(request: Request) {
   const apiKey = process.env.KIT_API_KEY;

@@ -3,12 +3,10 @@ import { Container } from "./Container";
 
 const PLACES = [
   "Dubai",
-  "UK",
   "Côte d’Ivoire",
   "Gabon",
   "Benin",
   "Rwanda",
-  "Uganda",
   "Kenya",
 ];
 
@@ -29,7 +27,7 @@ export function TravelMap() {
         <div className="relative mx-auto aspect-[1800/2346] w-full max-w-[504px]">
           <Image
             src="/world-dots.png"
-            alt="Dotted map of Europe, Africa and the Middle East, marking Dubai, the UK, Côte d’Ivoire, Gabon, Benin, Rwanda, Uganda and Kenya"
+            alt="Dotted map of Europe, Africa and the Middle East, marking Dubai, Côte d’Ivoire, Gabon, Benin, Rwanda and Kenya"
             fill
             unoptimized
             sizes="(max-width: 504px) 92vw, 504px"

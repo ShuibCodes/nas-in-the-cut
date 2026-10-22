@@ -28,7 +28,7 @@ export function About() {
           <div className="flex max-w-[54ch] flex-col gap-[14px] text-muted">
             <p className="m-0">
               I&apos;m Nas. I built gyms from the floor up, sold nine figures in
-              real estate, and now I put money into creative businesses — some
+              real estate, and now I put money into creative businesses. Some
               of it worked, some of it cost me money I&apos;d rather not name in
               a headline.
             </p>
