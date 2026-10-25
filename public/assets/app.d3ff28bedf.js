@@ -305,19 +305,33 @@
   var SIG = "nitc-signals";
   function sent() { try { return JSON.parse(localStorage.getItem(SIG) || "[]"); } catch (e) { return []; } }
   var already = sent();
+  function record(id) {
+    var list = sent(); list.push(id);
+    try { localStorage.setItem(SIG, JSON.stringify(list)); } catch (e) {}
+    var body = JSON.stringify({ id: id });
+    try {
+      if (navigator.sendBeacon && navigator.sendBeacon("signal.php", new Blob([body], { type: "application/json" }))) return;
+    } catch (e) {}
+    if (window.fetch) fetch("signal.php", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+  }
+  // Every "More of this" ends at the newsletter box: the last one on this page, or the home page's.
+  function toSignup() {
+    var forms = document.querySelectorAll("form.signup");
+    var form = forms[forms.length - 1];
+    if (!form) { location.href = "./#subscribe"; return; }
+    var input = form.querySelector("input[type=email]");
+    form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    setTimeout(function () { input.focus({ preventScroll: true }); }, reduce ? 0 : 600);
+  }
   document.querySelectorAll(".more").forEach(function (b) {
     var id = b.getAttribute("data-signal");
     if (already.indexOf(id) > -1) b.setAttribute("aria-pressed", "true");
     b.addEventListener("click", function () {
-      if (b.getAttribute("aria-pressed") === "true") return;
-      b.setAttribute("aria-pressed", "true");
-      var list = sent(); list.push(id);
-      try { localStorage.setItem(SIG, JSON.stringify(list)); } catch (e) {}
-      var body = JSON.stringify({ id: id });
-      try {
-        if (navigator.sendBeacon && navigator.sendBeacon("signal.php", new Blob([body], { type: "application/json" }))) return;
-      } catch (e) {}
-      if (window.fetch) fetch("signal.php", { method: "POST", headers: { "Content-Type": "application/json" }, body: body, keepalive: true }).catch(function () {});
+      if (b.getAttribute("aria-pressed") !== "true") {
+        b.setAttribute("aria-pressed", "true");
+        record(id);
+      }
+      toSignup();
     });
   });
 
