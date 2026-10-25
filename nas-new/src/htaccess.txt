@@ -1,0 +1,79 @@
+# Nas In The Cut: Hostinger (LiteSpeed / Apache) rules. Goes in public_html as .htaccess
+
+Options -Indexes
+DirectoryIndex index.html
+
+# One address for everyone: https://nasinthecut.com (www and http both redirect here)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.nasinthecut\.com$ [NC]
+  RewriteRule ^ https://nasinthecut.com%{REQUEST_URI} [L,R=301]
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Short address for the gallery page
+  RewriteRule ^in-the-room/?$ https://%{HTTP_HOST}/in-the-room.html [L,R=301]
+  RewriteRule ^in-the-cup/?$ https://%{HTTP_HOST}/in-the-cup.html [L,R=301]
+</IfModule>
+
+# File types some servers do not know yet
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType application/manifest+json .webmanifest
+  AddType video/mp4 .mp4
+  AddType audio/mpeg .mp3
+  AddType text/plain .txt
+  AddCharset utf-8 .html .css .js .txt .webmanifest .svg .xml
+</IfModule>
+
+# Compress text on the way out
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript text/javascript application/manifest+json image/svg+xml application/xml
+</IfModule>
+
+# Caching: pages always fresh, CSS and JS for a year, media for a month
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 week"
+  ExpiresByType image/x-icon "access plus 1 week"
+  ExpiresByType image/vnd.microsoft.icon "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 week"
+  ExpiresByType application/manifest+json "access plus 1 week"
+  ExpiresByType video/mp4 "access plus 1 month"
+  ExpiresByType audio/mpeg "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # CSS and JS names change with every update, so they can be cached for good
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Photos, film and sound keep their names, so phones re-check them monthly
+  <FilesMatch "\.(avif|webp|jpg|png|svg|mp4|mp3)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set X-Frame-Options "DENY"
+  Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self' https:; form-action 'self' https:; frame-src https://form.typeform.com; base-uri 'self'; frame-ancestors 'none'"
+</IfModule>
+
+# Keep the build notes private if they are ever uploaded by mistake
+<FilesMatch "^(UPLOAD\.txt|_headers|signals\.json|cup-requests\.json)$">
+  Require all denied
+</FilesMatch>

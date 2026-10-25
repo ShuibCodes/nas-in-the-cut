@@ -1,0 +1,2 @@
+Pillow>=11.2   # AVIF support is built in from 11.2
+playwright>=1.45

@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# nas-new generated output (rebuilt by its tools, published into public/)
+/nas-new/dist/
+/nas-new/src/img/out/
+/nas-new/src/media/out/
+__pycache__/
+
+# Holds the private stats key and the repo is public. Upload it to Hostinger by hand.
+/nas-new/src/php/stats.php
